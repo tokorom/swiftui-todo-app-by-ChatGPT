@@ -2,7 +2,7 @@ import SwiftUI
 import Combine
 
 class TaskStore: ObservableObject {
-    @Published var tasks: [Task] {
+    @Published var tasks: [Task] = [] {
         didSet {
             saveTasks()
         }
