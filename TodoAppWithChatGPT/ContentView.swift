@@ -5,7 +5,11 @@ struct ContentView: View {
     @State private var newTaskTitle = ""
 
     var body: some View {
-        NavigationView {
+        VStack {
+            Text("ToDoリスト")
+                .font(.largeTitle)
+                .padding()
+
             List {
                 ForEach(taskStore.tasks) { task in
                     HStack {
@@ -23,14 +27,8 @@ struct ContentView: View {
                 }
                 .onDelete(perform: taskStore.deleteTask)
             }
-            .navigationTitle("ToDoリスト")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-            }
             .listStyle(InsetGroupedListStyle())
-
+            
             VStack {
                 TextField("新しいタスクを追加", text: $newTaskTitle, onCommit: {
                     taskStore.addTask(title: newTaskTitle)
